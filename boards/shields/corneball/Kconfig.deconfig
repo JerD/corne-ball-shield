@@ -1,0 +1,16 @@
+if SHIELD_CORNEBALL_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "corneball"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_CORNEBALL_LEFT || SHIELD_CORNEBALL_RIGHT || SHIELD_CORNEBALL_DONGLE
+
+config ZMK_SPLIT
+    default y
+
+endif
