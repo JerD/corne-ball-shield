@@ -5,26 +5,10 @@
 		zmk,kscan = &kscan0;
 	};
 
-    kscan0:  kscan_composite {
-        compatible = "zmk,kscan-composite";
-
-        // Include the matrix driver
-        matrix {
-            kscan = <&kscan1>;
-        };
-
-        // Include the direct GPIO driver...
-        direct {
-            kscan = <&kscan2>;
-            row-offset = <4>; // ...and shift it to not overlap
-        };
-    };
-
-    kscan1: kscan_matrix {
+        kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
         wakeup-source;
-
         row-gpios = 
             <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
             <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
@@ -37,15 +21,49 @@
             <&pro_micro 18 GPIO_ACTIVE_HIGH>,
             <&pro_micro 15 GPIO_ACTIVE_HIGH>,
             <&pro_micro 14 GPIO_ACTIVE_HIGH>;
-
     };
-    
-     kscan2: kscan_direct {
-        compatible = "zmk,kscan-gpio-direct";
-        wakeup-source;
-        input-gpios = 
-            <&pro_micro 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        debounce-press-ms = <5>;
-        debounce-release-ms = <5>;
-    }; 
+
+//    kscan0:  kscan_composite {
+//        compatible = "zmk,kscan-composite";
+//
+//        // Include the matrix driver
+//        matrix {
+//            kscan = <&kscan1>;
+//        };
+//
+//        // Include the direct GPIO driver...
+//        direct {
+//            kscan = <&kscan2>;
+//            row-offset = <4>; // ...and shift it to not overlap
+//        };
+//    };
+//
+//    kscan1: kscan_matrix {
+//        compatible = "zmk,kscan-gpio-matrix";
+//        diode-direction = "col2row";
+//        wakeup-source;
+//
+//        row-gpios = 
+//            <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
+//            <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
+//            <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
+//            <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+//        col-gpios =
+//            <&pro_micro 21 GPIO_ACTIVE_HIGH>,
+//            <&pro_micro 20 GPIO_ACTIVE_HIGH>,
+//            <&pro_micro 19 GPIO_ACTIVE_HIGH>,
+//            <&pro_micro 18 GPIO_ACTIVE_HIGH>,
+//            <&pro_micro 15 GPIO_ACTIVE_HIGH>,
+//            <&pro_micro 14 GPIO_ACTIVE_HIGH>;
+//
+//    };
+//    
+//     kscan2: kscan_direct {
+//        compatible = "zmk,kscan-gpio-direct";
+//        wakeup-source;
+//        input-gpios = 
+//            <&pro_micro 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+//        debounce-press-ms = <5>;
+//        debounce-release-ms = <5>;
+//    }; 
 };
